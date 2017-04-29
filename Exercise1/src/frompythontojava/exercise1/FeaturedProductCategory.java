@@ -2,9 +2,6 @@ package frompythontojava.exercise1;
 
 import java.util.Date;
 
-/**
- * Created by marti on 2017.04.25..
- */
 public class FeaturedProductCategory extends ProductCategory {
 
     public Date startDate;

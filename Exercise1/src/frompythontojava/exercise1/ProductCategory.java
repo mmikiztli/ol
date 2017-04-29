@@ -1,25 +1,26 @@
 package frompythontojava.exercise1;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-/**
- * Created by marti on 2017.04.25..
- */
 public class ProductCategory {
 
-    public int id;
     public static int idCounter = 0;
+
+    public int id;
     public String name;
     public String department;
     public String description;
 
-    protected List<Product> products;
-
     public ProductCategory() {
         this.id = idCounter;
         this.idCounter++;
-        this.products = new ArrayList<>();
+    }
+
+    // this is dangerous
+    public ProductCategory(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public ProductCategory(String name, String department, String description) {
@@ -28,19 +29,30 @@ public class ProductCategory {
         this.name = name;
         this.department = department;
         this.description = description;
-        this.products = new ArrayList<>();
-    }
-
-    public ProductCategory(int id, String name) {
-        this.id = id;
-        this.name = name;
-        this.department = department;
-        this.description = description;
-        this.products = new ArrayList<>();
     }
 
     public List<Product> getProducts() {
-        return products;
+        return Product.getAllProductsBy(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ProductCategory that = (ProductCategory) o;
+        return id == that.id &&
+               Objects.equals(name, that.name) &&
+               Objects.equals(department, that.department) &&
+               Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, department, description);
     }
 
     @Override
@@ -48,9 +60,9 @@ public class ProductCategory {
         return  "id:" + id +
                 ", name:" + name +
                 ", department:" + department +
-                ", description:" + description +
-                ", products:" + products;
+                ", description:" + description;
     }
+
 }
 
 
