@@ -34,14 +34,18 @@ public class Product {
 
     public static List<Product> getAllProductsBy(ProductCategory productCategory) {
         return productList.stream()
-                .filter(product -> product.productCategory.equals(productCategory))
+                .filter(product -> match(productCategory, product.productCategory))
                 .collect(Collectors.toList());
     }
 
     public static List<Product> getAllProductsBy(Supplier supplier) {
         return productList.stream()
-                .filter(product -> product.supplier.equals(supplier))
+                .filter(product -> match(supplier, product.supplier))
                 .collect(Collectors.toList());
+    }
+
+    private static <T> boolean match(T a, T b) {
+        return (a == null ? b == null : a.equals(b));
     }
 
     @Override
