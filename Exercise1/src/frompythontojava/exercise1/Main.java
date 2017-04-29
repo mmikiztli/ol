@@ -26,8 +26,21 @@ public class Main {
             products.add(getProduct("p-" + i + "-2", randomElement(suppliers), randomElement(categories)));
         }
 
+        System.out.println("\nEvery product:");
         for (Product p : products) {
             System.out.println(p);
+        }
+
+        System.out.println("\nProducts by category:");
+        for (ProductCategory category : categories) {
+            System.out.println("Category: " + category);
+            category.getProducts().forEach(System.out::println);
+        }
+
+        System.out.println("\nProducts by supplier:");
+        for (Supplier supplier : suppliers) {
+            System.out.println("Supplier: " + supplier);
+            supplier.getProducts().forEach(System.out::println);
         }
     }
 
