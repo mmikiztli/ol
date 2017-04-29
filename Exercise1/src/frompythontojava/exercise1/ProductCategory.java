@@ -14,7 +14,7 @@ public class ProductCategory {
 
     public ProductCategory() {
         this.id = idCounter;
-        this.idCounter++;
+        idCounter++;
     }
 
     // this is dangerous
@@ -25,7 +25,7 @@ public class ProductCategory {
 
     public ProductCategory(String name, String department, String description) {
         this.id = idCounter;
-        this.idCounter++;
+        idCounter++;
         this.name = name;
         this.department = department;
         this.description = description;
